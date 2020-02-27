@@ -11,7 +11,7 @@ module.exports = function oneReport(dirname) {
 
   // generate shell command and run
   const name = shell.exec('git config user.name', {silent:true}).stdout.trim();
-  const sevenDaysAgo = new Date((new Date()).getTime() - (1000 * 60 * 60 * 24 * 7));
+  const sevenDaysAgo = new Date((new Date()).getTime() - (1000 * 60 * 60 * 24 * 35));
   const dateStr = dateformat(sevenDaysAgo, 'yyyy-mm-dd');
   const gitLogCommentToRun = `cd '${dirname}' && git log --after ${dateStr} --author '${name}'`;
   debug('gitLogCommentToRun: ', gitLogCommentToRun);
@@ -49,7 +49,7 @@ module.exports = function oneReport(dirname) {
     if( folderRelativePath.trim() === '') {
       folderRelativePath = path.parse(__dirname).name;
     }
-    console.log(`\n\n~~~~~~~ Weekly Report for ${folderRelativePath} ~~~~~~~\n\n ${logArr.join('\n')}`);
+    console.log(`\n\n~~~~~~~ Monthly Report for ${folderRelativePath} ~~~~~~~\n\n ${logArr.join('\n')}`);
   }
 
 }
